@@ -1,0 +1,46 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Rovers - Nasa</title>
+    <script src="Entidades/Coordenada.js"></script>
+    <script src="Entidades/Rover.js"></script>
+    <script src="Entidades/RoverFactory.js"></script>
+    <script src="Entidades/Terreno.js"></script>
+    <script src="Entidades/TerrenoFactory.js"></script>
+    <script src="Entidades/Direcoes/Direcao.js"></script>
+    <script src="Entidades/Direcoes/Sul.js"></script>
+    <script src="Entidades/Direcoes/Leste.js"></script>
+    <script src="Entidades/Direcoes/Norte.js"></script>
+    <script src="Entidades/Direcoes/Oeste.js"></script>
+    <script src="Entidades/Comandos/Comando.js"></script>
+    <script src="Entidades/Comandos/Direita.js"></script>
+    <script src="Entidades/Comandos/Esquerda.js"></script>
+    <script src="Entidades/Comandos/Mover.js"></script>
+    <script src="Entidades/Controlador.js"></script>
+    <script src="Servicos/ExploracaoServico.js"></script>
+    <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+</head>
+<body>
+    <style>
+        textarea {
+            width: 200px;
+            height: 200px;
+        }
+    </style>
+    <textarea id="comandos"></textarea>
+    <button type="button" id="rodar">rodar</button>
+    <textarea id="resultado"></textarea>
+    <script>
+        function Rodar() {
+            var comandos = $("#comandos").val().split("\n");
+            var servico = new Servicos.ExploracaoServico();
+            var localizacoes = servico.explorar(comandos);
+            $("#resultado").val(localizacoes.join('\n'));
+        }
+
+        $(document).ready(function () {
+            $("#rodar").click(Rodar);
+        });
+    </script>
+</body>
+</html>
